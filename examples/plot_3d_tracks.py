@@ -22,3 +22,6 @@ grace_data['x'], grace_data['y'], grace_data['z'] = zip(*grace_data.apply(
 import plotly.express as px
 fig = px.scatter_3d(grace_data[:10000], x="x", y="y", z="z", color="Kband range [m]")
 fig.show()
+
+fig = px.scatter_3d(grace_data[:5000], x="x", y="y", z="z", color="O-C range rate [m per s]")
+fig.show()

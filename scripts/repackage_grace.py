@@ -25,6 +25,12 @@ def main():
             dfs.append(pd.read_csv(path, sep="\s+", skiprows=12, names=col_names))
     
     df = pd.concat(dfs)
+
+    # Rename columns since ZARR does not support slashes.
+    df = df.rename(columns={"GPS range rate AB [m/s]": "GPS range rate AB [m per s]",
+        "Kband range rate [m/s]": "Kband range rate [m per s]",
+        "O-C range rate [m/s]": "O-C range rate [m per s]"
+        })
     
     # Convert times from modified Julian to datetime.
     df['time'] = Time(df["MJD"] + df["frac. of a day"], format="mjd")
